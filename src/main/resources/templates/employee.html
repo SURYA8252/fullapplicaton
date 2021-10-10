@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+  <h2>Manage Employee</h2>
+  <br />
+  <h4><a th:href="@{/employee/add}">Add new Employee</a></h4>
+  <div th:if="${message}" class="alert alert-success text-center">
+     [[${message}]]
+  </div>
+  <br />
+  <table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First_Name</th>
+      <th scope="col">Last_Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Phone</th>
+      <th scope="col">E-Mail</th>
+      <th scope="col">Address</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+     <th:block>
+        <tr th:each="employee : ${listemployees}">
+          <td th:text="${'EMP'+employee.id}"></td>
+          <td>[[${employee.firstName}]]</td>
+          <td>[[${employee.lastName}]]</td>
+          <td>[[${employee.gender}]]</td>
+          <td>[[${employee.phone}]]</td>
+          <td>[[${employee.email}]]</td>
+          <td>[[${employee.address}]]</td>
+          <td>
+            <a th:href="@{'/employee/edit/'+${employee.id}}" class="h5 mr-3">Edit</a>
+            <a th:href="@{'/employee/delete/'+${employee.id}}" class="h5">Delete</a>
+          </td>
+        </tr>
+     </th:block>
+  </tbody>
+  </table>
+</div>
+</body>
+</html>

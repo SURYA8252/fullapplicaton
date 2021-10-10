@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>[[${pageTitle}]]</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" th:href="@{/style1.css}" />
+</head>
+<body>
+	<div class="container register">
+		<div class="row">
+			<div class="col-md-3 register-left">
+				<img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+				<h3>Welcome</h3>
+				<p>You are 30 seconds away from earning your own money!</p>
+				<a th:href="@{/welcome}" class="btn btn-primary">Back</a><br />
+			</div>
+			<div class="col-md-9 register-right">
+				<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="home-tab"
+						data-toggle="tab" href="#home" role="tab" aria-controls="home"
+						aria-selected="true">Employee</a></li>
+					<!-- <li class="nav-item"><a class="nav-link disable" id="profile-tab"
+						data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile" aria-selected="false">Hirer</a></li>
+					 -->
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="home" role="tabpanel"
+						aria-labelledby="home-tab">
+						<h3 class="register-heading">[[${pageTitle}]]</h3>
+						<form th:action="@{/employee/save}" method="post" th:object="${employee}">
+							<div class="row register-form">
+								<div class="col-md-6">
+									<div class="form-group">
+									<input type="hidden" th:field="*{id}" />
+										<input type="text" class="form-control" name="firstName" th:field="*{firstName}"
+											placeholder="First Name *" minlength="2" maxlength="50" required="required" />
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" name="lastName" th:field="*{lastName}"
+											placeholder="Last Name *" minlength="2" maxlength="50" required="required" />
+									</div>
+									<div class="form-group">
+										<div class="maxl">
+											<label class="radio inline"> <input type="radio"
+												name="gender" th:field="*{gender}" value="male" required="required" checked> <span>
+													Male </span>
+											</label> <label class="radio inline"> <input type="radio"
+												name="gender" th:field="*{gender}" value="female" required="required"> <span>Female </span>
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="email" class="form-control" name="email" th:field="*{email}"
+											placeholder="Your Email *" minlength="6" maxlength="100" />
+									</div>
+									<div class="form-group">
+										<input type="text" minlength="10" maxlength="10" name="phone" th:field="*{phone}"
+											class="form-control" placeholder="Your Phone *" value="" />
+									</div>
+									<div class="form-group">
+										<input type="text" minlength="5" maxlength="200"
+											name="address" th:field="*{address}" class="form-control"
+											placeholder="Your Address *" value="" />
+									</div>
+									<button type="submit" class="btn btn-outline-success m-2">Save</button>
+									<button type="submit" class="btn btn-outline-danger m-2" onclick="cancelForm()">cancel</button>
+								</div>
+							</div>
+							</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+	  function cancelForm()
+	  {
+		  window.location="[[@{/employee}]]";
+	  }
+	</script>
+</body>
+</html>
